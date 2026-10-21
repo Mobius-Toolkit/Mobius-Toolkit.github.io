@@ -116,7 +116,8 @@
     }
     .loops {
       top: 50%;
-      right: -24rem;
+      right: auto;
+      left: calc(max(0px, (100% - var(--sl-content-width) - 2 * var(--sl-content-pad-x)) / 2) + var(--sl-content-pad-x) + 34rem);
       height: 32.5rem;
       transform: translateY(-50%);
     }
