@@ -1,0 +1,98 @@
+---
+import { Code } from '@astrojs/starlight/components';
+
+const releases = 'https://github.com/Mobius-Toolkit/Mobius/releases/latest/download';
+const macos = `rm -rf ~/.mobius/app && mkdir -p ~/.mobius/app
+curl -fsSL ${releases}/mobius-aarch64-apple-darwin.tar.gz \\
+  | tar -xz -C ~/.mobius/app`;
+const linux = `rm -rf ~/.mobius/app && mkdir -p ~/.mobius/app
+curl -fsSL ${releases}/mobius-x86_64-unknown-linux-gnu.tar.gz \\
+  | tar -xz -C ~/.mobius/app`;
+---
+
+<section id="install" class="not-content">
+  <h2>Install</h2>
+  <ol>
+    <li>
+      <p>Download the release archive for your host. The archive has one file: the program <code>mobius</code>.</p>
+      <h3>Apple silicon Mac</h3>
+      <Code code={macos} lang="sh" frame="none" />
+      <h3>Linux x86_64</h3>
+      <Code code={linux} lang="sh" frame="none" />
+    </li>
+    <li>
+      <p>Add <code>~/.mobius/app</code> to <code>PATH</code> in your shell profile:</p>
+      <Code code={'export PATH="$HOME/.mobius/app:$PATH"'} lang="sh" frame="none" />
+    </li>
+    <li>
+      <p>Make sure that the program starts:</p>
+      <Code code="mobius --help" lang="sh" frame="none" />
+    </li>
+  </ol>
+  <p>
+    Use <code>curl</code>, not a browser. macOS blocks an unsigned program that a browser downloads. <code>curl</code> does not mark the file.
+  </p>
+  <p>
+    Mobius also needs other programs, for example <code>git</code> and <code>gh</code>. The install guide lists them.
+  </p>
+  <p class="links">
+    <a href="https://github.com/Mobius-Toolkit/Mobius/blob/main/docs/install.md">Read the full install guide</a>
+    <a href="https://github.com/Mobius-Toolkit/Mobius/releases">Releases on GitHub</a>
+  </p>
+</section>
+
+<style>
+  section {
+    padding-block: 4rem;
+    border-top: 1px solid var(--sl-color-hairline);
+    color: var(--sl-color-text);
+  }
+  h2 {
+    margin: 0 0 2rem;
+    font-size: 1.625rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    color: var(--sl-color-white);
+  }
+  h3 {
+    margin: 1.5rem 0 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.6;
+    color: var(--sl-color-white);
+  }
+  ol {
+    margin: 0;
+    padding-left: 1.5rem;
+  }
+  li {
+    padding-left: 0.5rem;
+    margin-bottom: 2rem;
+  }
+  p {
+    max-width: 65ch;
+    margin: 0 0 1rem;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  code {
+    font-family: inherit;
+    font-weight: 600;
+  }
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    font-weight: 600;
+  }
+  a {
+    color: var(--sl-color-text-accent);
+    text-underline-offset: 0.25em;
+  }
+  a:focus-visible {
+    outline: 2px solid var(--sl-color-accent);
+    outline-offset: 3px;
+  }
+</style>

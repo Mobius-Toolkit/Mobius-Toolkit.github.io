@@ -8,6 +8,16 @@ export default defineConfig({
       title: 'Mobius',
       logo: { src: './src/assets/icon.svg' },
       favicon: '/icon.svg',
+      customCss: ['./src/styles/custom.css'],
+      components: {
+        PageTitle: './src/components/PageTitle.astro',
+      },
+      expressiveCode: {
+        styleOverrides: {
+          borderColor: 'var(--sl-color-hairline)',
+          codeFontFamily: "'Geist Mono Variable', monospace",
+        },
+      },
     }),
   ],
 });

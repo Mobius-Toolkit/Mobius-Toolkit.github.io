@@ -1,0 +1,48 @@
+@import '@fontsource-variable/geist';
+@import '@fontsource-variable/geist-mono';
+
+:root {
+  --mobius-field: #2d5f8b;
+  --mobius-loop: #7fb0dc;
+  --mobius-paper: #e9ece8;
+  --mobius-chalk: #f7f8f6;
+  --mobius-ink: #1d3347;
+  --mobius-rule: #c9d0c8;
+
+  --sl-font: 'Geist Variable', sans-serif;
+  --sl-color-accent-low: #14293c;
+  --sl-color-accent: var(--mobius-loop);
+  --sl-color-accent-high: #b6d2ea;
+}
+
+:root[data-theme='light'] {
+  --sl-color-accent-low: #cfdde9;
+  --sl-color-accent: var(--mobius-field);
+  --sl-color-accent-high: var(--mobius-ink);
+  --sl-color-white: var(--mobius-ink);
+  --sl-color-text: var(--mobius-ink);
+  --sl-color-text-accent: var(--mobius-field);
+  --sl-color-gray-7: var(--mobius-chalk);
+  --sl-color-bg: var(--mobius-paper);
+  --sl-color-bg-nav: var(--mobius-paper);
+  --sl-color-hairline: var(--mobius-rule);
+  --sl-color-hairline-light: var(--mobius-rule);
+  --sl-color-hairline-shade: var(--mobius-rule);
+}
+
+main {
+  overflow-x: clip;
+}
+
+main > .content-panel:first-child:has(> .sl-container:empty) {
+  display: none;
+}
+
+main > .content-panel:first-child:has(> .sl-container:empty) + .content-panel {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.social-icons::after {
+  display: none;
+}

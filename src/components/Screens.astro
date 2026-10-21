@@ -1,0 +1,124 @@
+---
+import { Image } from 'astro:assets';
+
+const screens = [
+  {
+    name: 'chat',
+    title: 'Chat',
+    text: 'Talk to the Lead of a Workstream. The Lead plans the tasks and reports the results.',
+    alt: 'The Chat screen: messages between the owner and the Lead, a list of tasks with their states, and a field to write to the Lead.',
+  },
+  {
+    name: 'inbox',
+    title: 'Inbox',
+    text: 'See each item that waits for you: questions, approvals and stopped tasks.',
+    alt: 'The Inbox screen: a list of items that wait for the owner. Each item has buttons, for example Answer, Resume and Merge.',
+  },
+  {
+    name: 'chat-tasks',
+    title: 'Tasks',
+    text: 'See the state of each task of a Workstream.',
+    alt: 'The Tasks tab of a Workstream chat: each task has a number, a name and a state, for example needs-human or waits for CI.',
+  },
+  {
+    name: 'agents',
+    title: 'Agents',
+    text: 'See each agent session and its state.',
+    alt: 'The Agents screen: agent sessions in groups by role. Each session shows its Workstream, its ticket and a state, for example checks or paused.',
+  },
+  {
+    name: 'usage',
+    title: 'Usage',
+    text: 'See the usage of each model.',
+    alt: 'The Usage screen: a bar chart of the cost of each day, split by model, and a table with the sessions, the tokens and the cost of each model.',
+  },
+];
+const images = import.meta.glob<{ default: ImageMetadata }>('../assets/screenshots/*.png', {
+  eager: true,
+});
+const image = (file: string) => images[`../assets/screenshots/${file}.png`].default;
+---
+
+<section class="not-content">
+  <h2>The web client</h2>
+  {
+    screens.map(({ name, title, text, alt }, index) => (
+      <div class="screen">
+        <p class="caption">
+          <strong>{title}</strong> {text}
+        </p>
+        <div class="images">
+          <Image
+            class="phone"
+            src={image(`${name}-phone`)}
+            alt={alt}
+            loading={index === 0 ? 'eager' : 'lazy'}
+          />
+          <Image
+            class="desktop"
+            src={image(`${name}-desktop`)}
+            alt={alt}
+            loading={index === 0 ? 'eager' : 'lazy'}
+          />
+        </div>
+      </div>
+    ))
+  }
+</section>
+
+<style>
+  section {
+    padding-block: 4rem 2rem;
+  }
+  h2 {
+    margin: 0 0 2rem;
+    font-size: 1.625rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    color: var(--sl-color-white);
+  }
+  .screen {
+    padding-block: 2rem;
+    border-top: 1px solid var(--sl-color-hairline);
+  }
+  .caption {
+    margin: 0 0 1.5rem;
+    max-width: 65ch;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--sl-color-text);
+  }
+  .images {
+    display: grid;
+    gap: 1.5rem;
+  }
+  img {
+    display: block;
+    height: auto;
+    border: 1px solid var(--sl-color-hairline);
+  }
+  .desktop {
+    width: 100%;
+    border-radius: 10px;
+  }
+  .phone {
+    width: 60%;
+    border-radius: 22px;
+  }
+  @media (min-width: 40rem) {
+    .images {
+      grid-template-columns: 1fr 25%;
+      align-items: end;
+    }
+    .desktop {
+      grid-column: 1;
+      grid-row: 1;
+    }
+    .phone {
+      grid-column: 2;
+      grid-row: 1;
+      width: 100%;
+    }
+  }
+</style>
