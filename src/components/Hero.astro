@@ -1,0 +1,119 @@
+<section class="hero not-content">
+  <div class="inner">
+    <h1>Mobius</h1>
+    <p class="tagline">Write an issue. Agents write the code. You approve the pull request.</p>
+    <p>
+      Mobius is a self-hosted agent factory. It is one program with a Go server and a React web
+      client. It runs on an Apple silicon Mac or on a Linux x86_64 server, and it connects to GitHub.
+    </p>
+    <p class="actions">
+      <a class="button" href="#install">Install Mobius</a>
+      <a class="link" href="https://github.com/Mobius-Toolkit/Mobius/releases">Releases on GitHub</a>
+    </p>
+  </div>
+  <svg class="loops" viewBox="88 168 336 176" aria-hidden="true">
+    <g fill="none" stroke-linecap="round" stroke-width="56">
+      <path
+        class="loop"
+        pathLength="1"
+        d="M256 256 C296 176 396 176 396 256 C396 336 296 336 256 256"
+        stroke="var(--mobius-loop)"></path>
+      <path
+        class="loop second"
+        pathLength="1"
+        d="M256 256 C216 176 116 176 116 256 C116 336 216 336 256 256"
+        stroke="var(--mobius-chalk)"></path>
+    </g>
+  </svg>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    overflow: hidden;
+    margin-inline: calc(50% - 50vw);
+    background: var(--mobius-field);
+    color: var(--mobius-chalk);
+  }
+  .inner {
+    position: relative;
+    z-index: 1;
+    box-sizing: border-box;
+    max-width: calc(var(--sl-content-width) + 2 * var(--sl-content-pad-x));
+    margin-inline: auto;
+    padding: 4rem var(--sl-content-pad-x) 14rem;
+  }
+  h1 {
+    margin: 0;
+    font-size: clamp(3.5rem, 10vw, 6rem);
+    font-weight: 700;
+    line-height: 1;
+    color: var(--mobius-chalk);
+  }
+  p {
+    max-width: 34rem;
+    margin: 1.5rem 0 0;
+    font-size: 1.125rem;
+    line-height: 1.6;
+  }
+  .tagline {
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  .button {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.25rem;
+    background: var(--mobius-chalk);
+    color: var(--mobius-field);
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .link {
+    color: var(--mobius-chalk);
+    font-weight: 600;
+    text-underline-offset: 0.25em;
+  }
+  .loops {
+    position: absolute;
+    right: -6rem;
+    bottom: -2rem;
+    width: 22rem;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .loop {
+      stroke-dasharray: 1;
+      animation: draw 1.6s ease-out both;
+    }
+    .second {
+      animation-delay: 0.5s;
+    }
+  }
+  @keyframes draw {
+    from {
+      stroke-dashoffset: 1;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+  @media (min-width: 50rem) {
+    .inner {
+      padding-block: 6rem;
+    }
+    .loops {
+      right: -5rem;
+      top: 50%;
+      bottom: auto;
+      width: 34rem;
+      transform: translateY(-50%);
+    }
+  }
+</style>

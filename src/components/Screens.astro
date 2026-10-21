@@ -1,0 +1,81 @@
+---
+import { Image } from 'astro:assets';
+
+const screens = [
+  { name: 'chat', title: 'Chat', text: 'Talk to the Lead agent about the work.' },
+  { name: 'inbox', title: 'Inbox', text: 'See each item that needs your action.' },
+  { name: 'chat-tasks', title: 'Tasks', text: 'Follow the tasks of a Workstream next to the chat.' },
+  { name: 'agents', title: 'Agents', text: 'See each agent that runs, and its state.' },
+  { name: 'usage', title: 'Usage', text: 'Find the cost and the tokens of the agents.' },
+];
+const images = import.meta.glob<{ default: ImageMetadata }>('../assets/screenshots/*.png', {
+  eager: true,
+});
+const image = (file: string) => images[`../assets/screenshots/${file}.png`].default;
+---
+
+<section class="not-content">
+  <h2>The web client</h2>
+  {
+    screens.map(({ name, title, text }) => (
+      <div class="screen">
+        <p class="caption">
+          <strong>{title}</strong> {text}
+        </p>
+        <div class="images">
+          <Image
+            class="desktop"
+            src={image(`${name}-desktop`)}
+            alt={`The ${title} screen of the web client on a desktop`}
+          />
+          <Image
+            class="phone"
+            src={image(`${name}-phone`)}
+            alt={`The ${title} screen of the web client on a phone`}
+          />
+        </div>
+      </div>
+    ))
+  }
+</section>
+
+<style>
+  section {
+    padding-block: 4rem 2rem;
+  }
+  h2 {
+    margin: 0 0 2rem;
+    font-size: 2rem;
+    line-height: 1.2;
+    color: var(--mobius-ink);
+  }
+  .screen {
+    padding-block: 2rem;
+    border-top: 1px solid var(--mobius-rule);
+  }
+  .caption {
+    margin: 0 0 1.5rem;
+    font-size: 1.125rem;
+    color: var(--mobius-ink);
+  }
+  .images {
+    display: grid;
+    grid-template-columns: 1fr 0.29fr;
+    gap: 1.5rem;
+    align-items: end;
+  }
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--mobius-rule);
+  }
+  @media (max-width: 40rem) {
+    .images {
+      grid-template-columns: 1fr;
+    }
+    .phone {
+      width: 60%;
+    }
+  }
+</style>
