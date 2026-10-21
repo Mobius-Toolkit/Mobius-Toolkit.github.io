@@ -10,6 +10,9 @@
   --mobius-rule: #c9d0c8;
 
   --sl-font: 'Geist Variable', sans-serif;
+  --sl-color-accent-low: #14293c;
+  --sl-color-accent: var(--mobius-loop);
+  --sl-color-accent-high: #b6d2ea;
 }
 
 :root[data-theme='light'] {
@@ -19,6 +22,7 @@
   --sl-color-white: var(--mobius-ink);
   --sl-color-text: var(--mobius-ink);
   --sl-color-text-accent: var(--mobius-field);
+  --sl-color-gray-7: var(--mobius-chalk);
   --sl-color-bg: var(--mobius-paper);
   --sl-color-bg-nav: var(--mobius-paper);
   --sl-color-hairline: var(--mobius-rule);

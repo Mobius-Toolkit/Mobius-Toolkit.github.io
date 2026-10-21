@@ -11,8 +11,12 @@ export default defineConfig({
       customCss: ['./src/styles/custom.css'],
       components: {
         PageTitle: './src/components/PageTitle.astro',
-        ThemeProvider: './src/components/LightThemeProvider.astro',
-        ThemeSelect: './src/components/EmptyThemeSelect.astro',
+      },
+      expressiveCode: {
+        styleOverrides: {
+          borderColor: 'var(--sl-color-hairline)',
+          codeFontFamily: "'Geist Mono Variable', monospace",
+        },
       },
     }),
   ],

@@ -2,11 +2,19 @@
 import { Image } from 'astro:assets';
 
 const screens = [
-  { name: 'chat', title: 'Chat', text: 'Talk to the Lead agent about the work.' },
-  { name: 'inbox', title: 'Inbox', text: 'See each item that needs your action.' },
-  { name: 'chat-tasks', title: 'Tasks', text: 'Follow the tasks of a Workstream next to the chat.' },
-  { name: 'agents', title: 'Agents', text: 'See each agent that runs, and its state.' },
-  { name: 'usage', title: 'Usage', text: 'Find the cost and the tokens of the agents.' },
+  {
+    name: 'chat',
+    title: 'Chat',
+    text: 'Talk to the Lead of a Workstream. The Lead plans the tasks and reports the results.',
+  },
+  {
+    name: 'inbox',
+    title: 'Inbox',
+    text: 'See each item that waits for you: questions, approvals and stopped tasks.',
+  },
+  { name: 'chat-tasks', title: 'Tasks', text: 'See the state of each task of a Workstream.' },
+  { name: 'agents', title: 'Agents', text: 'See each agent session and its state.' },
+  { name: 'usage', title: 'Usage', text: 'See the usage of each model.' },
 ];
 const images = import.meta.glob<{ default: ImageMetadata }>('../assets/screenshots/*.png', {
   eager: true,
@@ -17,21 +25,23 @@ const image = (file: string) => images[`../assets/screenshots/${file}.png`].defa
 <section class="not-content">
   <h2>The web client</h2>
   {
-    screens.map(({ name, title, text }) => (
+    screens.map(({ name, title, text }, index) => (
       <div class="screen">
         <p class="caption">
           <strong>{title}</strong> {text}
         </p>
         <div class="images">
           <Image
-            class="desktop"
-            src={image(`${name}-desktop`)}
-            alt={`The ${title} screen of the web client on a desktop`}
-          />
-          <Image
             class="phone"
             src={image(`${name}-phone`)}
             alt={`The ${title} screen of the web client on a phone`}
+            loading={index === 0 ? 'eager' : 'lazy'}
+          />
+          <Image
+            class="desktop"
+            src={image(`${name}-desktop`)}
+            alt={`The ${title} screen of the web client on a desktop`}
+            loading={index === 0 ? 'eager' : 'lazy'}
           />
         </div>
       </div>
@@ -45,37 +55,53 @@ const image = (file: string) => images[`../assets/screenshots/${file}.png`].defa
   }
   h2 {
     margin: 0 0 2rem;
-    font-size: 2rem;
+    font-size: 1.625rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
     line-height: 1.2;
-    color: var(--mobius-ink);
+    color: var(--sl-color-white);
   }
   .screen {
     padding-block: 2rem;
-    border-top: 1px solid var(--mobius-rule);
+    border-top: 1px solid var(--sl-color-hairline);
   }
   .caption {
     margin: 0 0 1.5rem;
-    font-size: 1.125rem;
-    color: var(--mobius-ink);
+    max-width: 65ch;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--sl-color-text);
   }
   .images {
     display: grid;
-    grid-template-columns: 1fr 0.29fr;
     gap: 1.5rem;
-    align-items: end;
   }
   img {
     display: block;
-    width: 100%;
     height: auto;
-    border: 1px solid var(--mobius-rule);
+    border: 1px solid var(--sl-color-hairline);
   }
-  @media (max-width: 40rem) {
+  .desktop {
+    width: 100%;
+    border-radius: 10px;
+  }
+  .phone {
+    width: 60%;
+    border-radius: 22px;
+  }
+  @media (min-width: 40rem) {
     .images {
-      grid-template-columns: 1fr;
+      grid-template-columns: 1fr 25%;
+      align-items: end;
+    }
+    .desktop {
+      grid-column: 1;
+      grid-row: 1;
     }
     .phone {
-      width: 60%;
+      grid-column: 2;
+      grid-row: 1;
+      width: 100%;
     }
   }
 </style>
