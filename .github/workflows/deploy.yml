@@ -23,6 +23,7 @@ jobs:
         with:
           name: screenshots
           path: screenshots/
+          if-no-files-found: error
       - if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v5
         with:
