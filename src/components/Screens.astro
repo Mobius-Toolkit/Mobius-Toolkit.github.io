@@ -6,15 +6,32 @@ const screens = [
     name: 'chat',
     title: 'Chat',
     text: 'Talk to the Lead of a Workstream. The Lead plans the tasks and reports the results.',
+    alt: 'The Chat screen: messages between the owner and the Lead, a list of tasks with their states, and a field to write to the Lead.',
   },
   {
     name: 'inbox',
     title: 'Inbox',
     text: 'See each item that waits for you: questions, approvals and stopped tasks.',
+    alt: 'The Inbox screen: a list of items that wait for the owner. Each item has buttons, for example Answer, Resume and Merge.',
   },
-  { name: 'chat-tasks', title: 'Tasks', text: 'See the state of each task of a Workstream.' },
-  { name: 'agents', title: 'Agents', text: 'See each agent session and its state.' },
-  { name: 'usage', title: 'Usage', text: 'See the usage of each model.' },
+  {
+    name: 'chat-tasks',
+    title: 'Tasks',
+    text: 'See the state of each task of a Workstream.',
+    alt: 'The Tasks tab of a Workstream chat: each task has a number, a name and a state, for example needs-human or waits for CI.',
+  },
+  {
+    name: 'agents',
+    title: 'Agents',
+    text: 'See each agent session and its state.',
+    alt: 'The Agents screen: agent sessions in groups by role. Each session shows its Workstream, its ticket and a state, for example checks or paused.',
+  },
+  {
+    name: 'usage',
+    title: 'Usage',
+    text: 'See the usage of each model.',
+    alt: 'The Usage screen: a bar chart of the cost of each day, split by model, and a table with the sessions, the tokens and the cost of each model.',
+  },
 ];
 const images = import.meta.glob<{ default: ImageMetadata }>('../assets/screenshots/*.png', {
   eager: true,
@@ -25,7 +42,7 @@ const image = (file: string) => images[`../assets/screenshots/${file}.png`].defa
 <section class="not-content">
   <h2>The web client</h2>
   {
-    screens.map(({ name, title, text }, index) => (
+    screens.map(({ name, title, text, alt }, index) => (
       <div class="screen">
         <p class="caption">
           <strong>{title}</strong> {text}
@@ -34,13 +51,13 @@ const image = (file: string) => images[`../assets/screenshots/${file}.png`].defa
           <Image
             class="phone"
             src={image(`${name}-phone`)}
-            alt={`The ${title} screen of the web client on a phone`}
+            alt={alt}
             loading={index === 0 ? 'eager' : 'lazy'}
           />
           <Image
             class="desktop"
             src={image(`${name}-desktop`)}
-            alt={`The ${title} screen of the web client on a desktop`}
+            alt={alt}
             loading={index === 0 ? 'eager' : 'lazy'}
           />
         </div>
