@@ -1,0 +1,15 @@
+{
+  "name": "mobius-toolkit-github-io",
+  "type": "module",
+  "private": true,
+  "version": "0.0.0",
+  "packageManager": "pnpm@12.0.0",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build"
+  },
+  "dependencies": {
+    "@astrojs/starlight": "0.42.6",
+    "astro": "7.4.1"
+  }
+}
