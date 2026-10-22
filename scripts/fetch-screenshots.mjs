@@ -1,7 +1,7 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 
 const base = 'https://raw.githubusercontent.com/Mobius-Toolkit/Mobius/screenshots/main';
-const names = ['chat', 'inbox', 'chat-tasks', 'agents', 'usage'];
+const names = ['chat', 'inbox', 'tasks', 'chat-tasks', 'agents', 'usage'];
 const devices = ['desktop', 'phone'];
 const directory = new URL('../src/assets/screenshots/', import.meta.url);
 
