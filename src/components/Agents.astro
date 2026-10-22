@@ -1,0 +1,44 @@
+<section class="not-content">
+  <h2>The support agents</h2>
+  <div class="row">
+    <p><strong>Judge.</strong> The Judge reads each new comment on a pull request. It sorts the comment into a fix, a question or a follow-up. It rejects a wrong finding of a bot. The Implementer does the fixes and answers the questions. The Lead creates an issue for each follow-up.</p>
+  </div>
+  <div class="row">
+    <p><strong>Researcher.</strong> The Researcher answers a question about the code of a repository. It reads the code in its own git worktree and does not change it. Another agent starts it, for example the Lead.</p>
+  </div>
+  <div class="row">
+    <p><strong>Curator.</strong> The Curator keeps one memory file for each repository. It reads the notes of the Leads and the problems of the last sessions, and it writes the lessons into the file. Each agent of the repository gets this file in its first prompt. The Curator also creates task issues in the maintenance Workstream for the problems that it finds.</p>
+  </div>
+</section>
+
+<style>
+  section {
+    padding-block: 4rem 2rem;
+    color: var(--sl-color-text);
+  }
+  h2 {
+    margin: 0 0 2rem;
+    font-size: 1.625rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    color: var(--sl-color-white);
+  }
+  p {
+    max-width: 65ch;
+    margin: 0 0 1.5rem;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  .row {
+    padding-block: 2rem;
+    border-top: 1px solid var(--sl-color-hairline);
+  }
+  .row p {
+    margin: 0;
+  }
+  strong {
+    font-weight: 600;
+    color: var(--sl-color-white);
+  }
+</style>
