@@ -1,0 +1,47 @@
+<section class="not-content">
+  <h2>Evergreen Workstreams</h2>
+  <p>An evergreen Workstream has no end. It stays open when it has no open task. Mobius has two kinds of evergreen Workstreams. Ask the Coordinator to create them.</p>
+  <div class="row">
+    <p><strong>Maintenance.</strong> The maintenance Workstream keeps the main branch of each repository green. It gets the CI breaks of <code>main</code>, the CI failures that more than one pull request shows, the local checks that time out, and the task issues of the Curator. One maintenance Workstream serves all repositories of the organization.</p>
+  </div>
+  <div class="row">
+    <p><strong>Skills.</strong> The Skills Workstream keeps the skills of the organization in the repository <code>&lt;organization&gt;/mobius-skills</code>. When an agent writes a script or a command that later sessions can use again, it proposes a skill. The Lead of the Skills Workstream turns the proposal into a task issue, and the change comes to you as a pull request. At the start of each session, Mobius copies the skills of the default branch into the skill folder of the Harness. Each agent also loads your own skills from the skill directory of its Harness.</p>
+  </div>
+</section>
+
+<style>
+  section {
+    padding-block: 4rem 2rem;
+    color: var(--sl-color-text);
+  }
+  h2 {
+    margin: 0 0 2rem;
+    font-size: 1.625rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    color: var(--sl-color-white);
+  }
+  p {
+    max-width: 65ch;
+    margin: 0 0 1.5rem;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  .row {
+    padding-block: 2rem;
+    border-top: 1px solid var(--sl-color-hairline);
+  }
+  .row p {
+    margin: 0;
+  }
+  strong {
+    font-weight: 600;
+    color: var(--sl-color-white);
+  }
+  code {
+    font-family: 'Geist Mono Variable', monospace;
+    font-size: 0.9375em;
+    overflow-wrap: anywhere;
+  }
+</style>

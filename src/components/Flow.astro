@@ -1,0 +1,57 @@
+<section class="not-content">
+  <h2>How Mobius works</h2>
+  <ol>
+    <li>
+      <p><strong>Start.</strong> Tell the Coordinator about a goal, or write an issue. The Triager discusses a new issue with you and proposes a Workstream with a Brief. You approve it.</p>
+    </li>
+    <li>
+      <p><strong>Plan.</strong> The Lead of the Workstream turns the Brief into task issues. You talk to the Lead in the chat of the Workstream.</p>
+    </li>
+    <li>
+      <p><strong>Build.</strong> An Implementer writes the code in its own git worktree, runs the local check, and opens a draft pull request.</p>
+    </li>
+    <li>
+      <p><strong>Review.</strong> A Reviewer with another Harness or another model reads the diff. The Implementer fixes each finding. When CI fails, a Diagnoser reads the job logs, and a fix round starts.</p>
+    </li>
+    <li>
+      <p><strong>Merge.</strong> The Lead checks the pull request against the issue and approves it. You get an Inbox item, and you merge.</p>
+    </li>
+  </ol>
+</section>
+
+<style>
+  section {
+    padding-block: 4rem;
+    border-top: 1px solid var(--sl-color-hairline);
+    color: var(--sl-color-text);
+  }
+  h2 {
+    margin: 0 0 2rem;
+    font-size: 1.625rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    color: var(--sl-color-white);
+  }
+  ol {
+    margin: 0;
+    padding-left: 1.5rem;
+  }
+  li {
+    padding-left: 0.5rem;
+    margin-bottom: 2rem;
+  }
+  li:last-child {
+    margin-bottom: 0;
+  }
+  p {
+    max-width: 65ch;
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  strong {
+    font-weight: 600;
+    color: var(--sl-color-white);
+  }
+</style>
