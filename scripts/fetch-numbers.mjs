@@ -10,7 +10,12 @@ const file = new URL('../src/assets/numbers.json', import.meta.url);
 async function search(query, page) {
   const url = new URL('https://api.github.com/search/issues');
   url.search = new URLSearchParams({ q: query, per_page: '100', page: String(page) });
-  const response = await fetch(url, { headers });
+  let response = await fetch(url, { headers });
+  if (response.status === 403 && response.headers.get('x-ratelimit-remaining') === '0') {
+    const resetAt = Number(response.headers.get('x-ratelimit-reset')) * 1000;
+    await new Promise((resolve) => setTimeout(resolve, Math.max(resetAt - Date.now(), 0) + 1000));
+    response = await fetch(url, { headers });
+  }
   if (!response.ok) {
     throw new Error(`Search failed: ${response.status} ${query}`);
   }
