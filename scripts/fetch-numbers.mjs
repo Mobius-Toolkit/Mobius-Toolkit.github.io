@@ -19,20 +19,39 @@ async function search(query, page) {
 
 const merged = (await search(`${scope} is:pr is:merged`, 1)).total_count;
 
-const since = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
-const query = `${scope} is:issue is:closed reason:completed linked:pr closed:>=${since}`;
+const day = 24 * 60 * 60 * 1000;
+const isoDay = (index) => new Date(index * day).toISOString().slice(0, 10);
+const closedQuery = `${scope} is:issue is:closed reason:completed linked:pr`;
 const hours = [];
-for (let page = 1; ; page++) {
-  const { items, total_count } = await search(query, page);
-  for (const { created_at, closed_at } of items) {
-    hours.push((Date.parse(closed_at) - Date.parse(created_at)) / 3_600_000);
+
+// A search query returns at most 1000 results, so a range with more results is split in two.
+async function collect(from, to) {
+  const query = `${closedQuery} closed:${isoDay(from)}..${isoDay(to)}`;
+  const first = await search(query, 1);
+  if (first.total_count > 1000) {
+    if (from === to) {
+      throw new Error(`More than 1000 results for one day: ${query}`);
+    }
+    const middle = Math.floor((from + to) / 2);
+    await collect(from, middle);
+    await collect(middle + 1, to);
+    return;
   }
-  if (items.length === 0 || hours.length >= total_count) {
-    break;
+  const pages = [first];
+  for (let page = 2; page <= Math.ceil(first.total_count / 100); page++) {
+    pages.push(await search(query, page));
+  }
+  for (const { items } of pages) {
+    for (const { created_at, closed_at } of items) {
+      hours.push((Date.parse(closed_at) - Date.parse(created_at)) / 3_600_000);
+    }
   }
 }
+
+const today = Math.floor(Date.now() / day);
+await collect(today - 30, today);
 if (hours.length === 0) {
-  throw new Error(`No closed issue found: ${query}`);
+  throw new Error(`No closed issue found: ${closedQuery}`);
 }
 hours.sort((a, b) => a - b);
 const middle = Math.floor(hours.length / 2);
