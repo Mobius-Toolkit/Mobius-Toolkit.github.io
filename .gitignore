@@ -5,3 +5,4 @@ src/assets/screenshots/
 screenshots/
 test-results/
 playwright-report/
+src/assets/numbers.json
