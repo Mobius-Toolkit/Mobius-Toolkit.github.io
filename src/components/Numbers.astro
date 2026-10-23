@@ -1,0 +1,62 @@
+---
+import numbers from '../assets/numbers.json';
+
+const merged = numbers.merged < 1000 ? String(numbers.merged) : numbers.merged.toLocaleString('en-US');
+const figures = [
+  { value: merged, label: 'merged pull requests', live: true },
+  {
+    value: `${numbers.medianHours} h`,
+    label: 'median time from a task issue to its close, last 30 days',
+    live: true,
+  },
+  { value: '4 Oct 2026', label: 'the first merged pull request', live: false },
+];
+---
+
+<section class="not-content">
+  <div class="figures">
+    {
+      figures.map(({ value, label, live }) => (
+        <div>
+          <p class="value" data-live={live ? '' : undefined}>
+            {value}
+          </p>
+          <p class="label">{label}</p>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  section {
+    padding-block: 4rem 0;
+    color: var(--sl-color-text);
+  }
+  .figures {
+    display: grid;
+    gap: 2rem;
+  }
+  p {
+    margin: 0;
+  }
+  .value {
+    font-size: 3rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    color: var(--sl-color-white);
+  }
+  .label {
+    max-width: 30ch;
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  @media (min-width: 40rem) {
+    .figures {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3rem;
+    }
+  }
+</style>

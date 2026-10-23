@@ -1,0 +1,123 @@
+---
+import { Image } from 'astro:assets';
+
+const levels = [
+  { title: 'Off.', text: 'You start each task, and you merge each pull request.' },
+  {
+    title: 'Start tasks.',
+    text: 'Mobius starts each task issue of the Workstream that has no open blocker. You merge.',
+  },
+  {
+    title: 'Merge only.',
+    text: 'You start the tasks. When the Lead approves a pull request, Mobius merges it.',
+  },
+  {
+    title: 'Start and merge.',
+    text: 'Mobius starts the tasks, and it merges each pull request that the Lead approves.',
+  },
+];
+const images = import.meta.glob<{ default: ImageMetadata }>('../assets/screenshots/autopilot-levels-*.png', {
+  eager: true,
+});
+const image = (device: string) => images[`../assets/screenshots/autopilot-levels-${device}.png`].default;
+const alt =
+  'The Autopilot menu of a Workstream chat: the levels Off, Start tasks, Merge only and Start and merge, each with a short text.';
+---
+
+<section class="not-content">
+  <h2>Autopilot</h2>
+  <p>Autopilot sets how much of the flow Mobius does with no action from you. Each Workstream has its own level.</p>
+  {
+    levels.map(({ title, text }) => (
+      <div class="row">
+        <p>
+          <strong>{title}</strong> {text}
+        </p>
+      </div>
+    ))
+  }
+  <p>To change the level, open the chat of the Workstream, select the Autopilot button at the top, and select a level. The labels <code>mobius:autopilot</code> and <code>mobius:auto-merge</code> on the Workstream issue set the same levels on GitHub. Mobius starts a new task only while fewer tasks are active than the limit <code>roles.implementer.max</code> in your config.</p>
+  <div class="screen">
+    <p class="caption">
+      <strong>Autopilot levels</strong> The level menu in the chat of a Workstream.
+    </p>
+    <div class="images">
+      <Image class="phone" src={image('phone')} alt={alt} loading="lazy" />
+      <Image class="desktop" src={image('desktop')} alt={alt} loading="lazy" />
+    </div>
+  </div>
+</section>
+
+<style>
+  section {
+    padding-block: 4rem 2rem;
+    color: var(--sl-color-text);
+  }
+  h2 {
+    margin: 0 0 2rem;
+    font-size: 1.625rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    color: var(--sl-color-white);
+  }
+  p {
+    max-width: 65ch;
+    margin: 0 0 1.5rem;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  .row,
+  .screen {
+    padding-block: 2rem;
+    border-top: 1px solid var(--sl-color-hairline);
+  }
+  .row p,
+  .caption {
+    margin: 0;
+  }
+  .caption {
+    margin-bottom: 1.5rem;
+  }
+  strong {
+    font-weight: 600;
+    color: var(--sl-color-white);
+  }
+  code {
+    font-family: 'Geist Mono Variable', monospace;
+    font-size: 0.9375em;
+    overflow-wrap: anywhere;
+  }
+  .images {
+    display: grid;
+    gap: 1.5rem;
+  }
+  img {
+    display: block;
+    height: auto;
+    border: 1px solid var(--sl-color-hairline);
+  }
+  .desktop {
+    width: 100%;
+    border-radius: 10px;
+  }
+  .phone {
+    width: 60%;
+    border-radius: 22px;
+  }
+  @media (min-width: 40rem) {
+    .images {
+      grid-template-columns: 1fr 25%;
+      align-items: end;
+    }
+    .desktop {
+      grid-column: 1;
+      grid-row: 1;
+    }
+    .phone {
+      grid-column: 2;
+      grid-row: 1;
+      width: 100%;
+    }
+  }
+</style>

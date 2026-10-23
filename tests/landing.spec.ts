@@ -22,7 +22,7 @@ for (const { name, width, height } of viewports) {
     await page.screenshot({
       path: `screenshots/landing-${name}.png`,
       fullPage: true,
-      mask: await page.locator('.screen img').all(),
+      mask: await page.locator('.screen img, [data-live]').all(),
     });
   });
 }
