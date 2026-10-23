@@ -22,9 +22,11 @@ async function search(query, page) {
   return response.json();
 }
 
-const merged = (await search(`${scope} is:pr is:merged`, 1)).total_count;
-
 const day = 24 * 60 * 60 * 1000;
+const weekStart = new Date(Date.now() - 7 * day).toISOString().slice(0, 19) + 'Z';
+const merged = (await search(`${scope} is:pr is:merged`, 1)).total_count;
+const mergedWeek = (await search(`${scope} is:pr is:merged merged:>=${weekStart}`, 1)).total_count;
+
 const isoDay = (index) => new Date(index * day).toISOString().slice(0, 10);
 const closedQuery = `${scope} is:issue is:closed reason:completed linked:pr`;
 const hours = [];
@@ -63,4 +65,4 @@ const middle = Math.floor(hours.length / 2);
 const median = hours.length % 2 ? hours[middle] : (hours[middle - 1] + hours[middle]) / 2;
 
 await mkdir(new URL('./', file), { recursive: true });
-await writeFile(file, JSON.stringify({ merged, medianHours: Math.round(median) }));
+await writeFile(file, JSON.stringify({ merged, mergedWeek, medianHours: Math.round(median) }));

@@ -1,9 +1,14 @@
 ---
 import numbers from '../assets/numbers.json';
 
-const merged = numbers.merged < 1000 ? String(numbers.merged) : numbers.merged.toLocaleString('en-US');
+const format = (count: number) => (count < 1000 ? String(count) : count.toLocaleString('en-US'));
 const figures = [
-  { value: merged, label: 'merged pull requests', live: true },
+  { value: format(numbers.merged), label: 'merged pull requests', live: true },
+  {
+    value: format(numbers.mergedWeek),
+    label: 'merged pull requests in the last 7 days',
+    live: true,
+  },
   {
     value: `${numbers.medianHours} h`,
     label: 'median time from a task issue to its close, last 30 days',
@@ -55,7 +60,7 @@ const figures = [
   }
   @media (min-width: 40rem) {
     .figures {
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 3rem;
     }
   }
