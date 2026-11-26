@@ -275,13 +275,17 @@ Mobius stops a task and gives it to you when it cannot continue. Some causes are
 - The task reached `max_fix_rounds`.
 - A Worker failed again after its last restart. The key `max_worker_restarts` sets the number of restarts.
 - The check failed `max_check_attempts` times in one round.
+- The CI of the pull request failed and stopped the task.
 
 Mobius sets the label `mobius:needs-human`. The Inbox shows an item with the buttons **Resume** and **Open GitHub**. The Lead gets an event. It reads the reason and the failed checks, then it does one of two things:
 
 - If it can remove the cause, it writes the exact fix in the Done list of the issue. Then it continues the task.
 - If it cannot, it asks you for the next step.
 
-To continue a task yourself, click **Resume** in the Inbox or in the tab **Tasks**. A stopped task also continues when its CI passes on the head, or when its pull request has a merge conflict.
+To continue a task yourself, click **Resume** in the Inbox or in the tab **Tasks**. Two stopped tasks continue with no click:
+
+- A task that a failed CI stopped continues when the CI passes on its head. A task that stopped for another reason stays stopped. Click **Resume** for such a task.
+- A stopped task with a merge conflict gets one conflict round for each head. It gets none when the pull request is older than `stale_pr_age`.
 
 To stop a task that runs, click the stop button of its row in the tab **Tasks**. The pull request and the branch stay.
 
