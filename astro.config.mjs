@@ -12,6 +12,10 @@ export default defineConfig({
       components: {
         PageTitle: './src/components/PageTitle.astro',
       },
+      sidebar: [
+        { label: 'Guides', items: [{ autogenerate: { directory: 'guides' } }] },
+        { label: 'Reference', items: [{ autogenerate: { directory: 'reference' } }] },
+      ],
       expressiveCode: {
         styleOverrides: {
           borderColor: 'var(--sl-color-hairline)',
