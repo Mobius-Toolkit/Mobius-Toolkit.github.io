@@ -199,7 +199,7 @@ The Implementer works in its own git worktree on the branch of the task. It chan
 
 When the Implementer ends, Mobius runs the script `.mobius/check` of the repository on the head commit. At most `max_checks` local checks run at the same time. Other tasks wait for a free place. A check that is too slow fails after `check_timeout`.
 
-When the check fails, the Implementer gets the output and fixes the code. A round allows up to `max_check_attempts` failed checks. The default is 3. After the last failed check, Mobius pushes the work and stops the task. See the section "Stop of a task".
+When the check fails, the Implementer gets the output and fixes the code. A round runs the check up to `max_check_attempts` times. The default is 3. When the check fails the last time, Mobius pushes the work and stops the task. See the section "Stop of a task".
 
 ### 3. The draft pull request
 
@@ -273,8 +273,8 @@ After the merge, the task ends. The Lead tells you the result in the chat.
 Mobius stops a task and gives it to you when it cannot continue. Some causes are:
 
 - The task reached `max_fix_rounds`.
-- A Worker failed more times than `max_worker_restarts`.
-- The check failed more times than `max_check_attempts`.
+- A Worker failed again after its last restart. The key `max_worker_restarts` sets the number of restarts.
+- The check failed `max_check_attempts` times in one round.
 
 Mobius sets the label `mobius:needs-human`. The Inbox shows an item with the buttons **Resume** and **Open GitHub**. The Lead gets an event. It reads the reason and the failed checks, then it does one of two things:
 
