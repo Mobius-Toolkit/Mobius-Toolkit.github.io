@@ -7,7 +7,10 @@
     <p><strong>Researcher.</strong> The Researcher answers a question about the code of a repository. It reads the code in its own git worktree and does not change it. Another agent starts it, for example the Lead.</p>
   </div>
   <div class="row">
-    <p><strong>Curator.</strong> The Curator keeps one memory file for each repository. It reads the notes of the Leads and the problems of the last sessions, and it writes the lessons into the file. Each agent of the repository gets this file in its first prompt. The Curator also creates task issues in the maintenance Workstream for the problems that it finds.</p>
+    <p><strong>Curator.</strong> The Curator keeps the memory files of each repository: one shared file and one file for each role. It reads the notes of the Leads and the problems of the last sessions, and it writes the lessons into the files. Each agent of the repository gets the shared file and the file of its role in its first prompt. The Curator also creates task issues in the maintenance Workstream for the problems that it finds.</p>
+  </div>
+  <div class="row">
+    <p><strong>Operator.</strong> The Operator does work outside code for one Workstream, for example in an external system. It uses the MCP servers and the web tools of its session. It changes no code and no GitHub issue. The Lead starts it and gets its report.</p>
   </div>
 </section>
 

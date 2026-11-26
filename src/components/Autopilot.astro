@@ -5,7 +5,7 @@ const levels = [
   { title: 'Off.', text: 'You start each task, and you merge each pull request.' },
   {
     title: 'Start tasks.',
-    text: 'Mobius starts each task issue of the Workstream that has no open blocker. You merge.',
+    text: 'Mobius starts each ready task issue of the Workstream. A ready task issue has no open blocker and no label <code>mobius:triage</code>. You merge.',
   },
   {
     title: 'Merge only.',
@@ -36,7 +36,7 @@ const alt =
       </div>
     ))
   }
-  <p>To change the level, open the chat of the Workstream, select the Autopilot button at the top, and select a level. The labels <code>mobius:autopilot</code> and <code>mobius:auto-merge</code> on the Workstream issue set the same levels on GitHub. Mobius starts a new task only while fewer tasks are active than the limit <code>roles.implementer.max</code> in your config.</p>
+  <p>To change the level, open the chat of the Workstream, select the Autopilot button at the top, and select a level. The labels <code>mobius:autopilot</code> and <code>mobius:auto-merge</code> on the Workstream issue set the same levels on GitHub. Mobius starts a new task only while fewer tasks are active than the sum of the limits <code>max</code> of the Implementer bindings. The key <code>roles.implementer.max</code> in your config sets the limit of the first binding.</p>
   <div class="screen">
     <p class="caption">
       <strong>Autopilot levels</strong> The level menu in the chat of a Workstream.
