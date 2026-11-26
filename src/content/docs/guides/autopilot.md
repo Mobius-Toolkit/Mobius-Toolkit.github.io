@@ -85,11 +85,13 @@ Mobius does not approve or merge a pull request in these cases:
 - The pull request has a merge conflict.
 - The pull request has an open review thread.
 - A check run of the head failed or did not end.
-- An open todo holds the merge.
+- An open todo holds the merge. The section "Todos that hold a merge" tells which todos do.
 
 ### Todos that hold a merge
 
 The Reviewer reports what must happen outside the code when the pull request merges, for example a deployment step. Mobius adds a todo item in the Inbox for each such need. A mandatory todo holds the merge until you close it. Another todo holds the merge until you close it or dismiss it.
+
+A todo for a step that a person can do only after the merge never holds the merge. This is true for a mandatory todo and for an optional todo. Mobius does not wait for it.
 
 While a todo holds the merge, the Inbox item of the pull request shows the reason "Mobius merges after you close the open todos." Mobius approves the pull request after the last todo closes.
 
