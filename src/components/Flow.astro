@@ -8,10 +8,10 @@
       <p><strong>Plan.</strong> The Lead of the Workstream turns the Brief into task issues. You talk to the Lead in the chat of the Workstream.</p>
     </li>
     <li>
-      <p><strong>Build.</strong> An Implementer writes the code in its own git worktree, runs the local check, and opens a draft pull request.</p>
+      <p><strong>Build.</strong> An Implementer writes the code in its own git worktree. Mobius runs the local check after each turn and sends a failed check back to the Implementer. Mobius pushes the commits and opens a draft pull request.</p>
     </li>
     <li>
-      <p><strong>Review.</strong> A Reviewer with another Harness or another model reads the diff. The Implementer fixes each finding. When CI fails, a Diagnoser reads the job logs, and a fix round starts.</p>
+      <p><strong>Review.</strong> A Reviewer reads the diff and compares it with the issue. You can bind the Reviewer to another Harness or another model than the Implementer. The Implementer fixes each finding. When CI fails, a Diagnoser reads the job logs, and a fix round starts.</p>
     </li>
     <li>
       <p><strong>Merge.</strong> The Lead checks the pull request against the issue and approves it. You get an Inbox item, and you merge.</p>

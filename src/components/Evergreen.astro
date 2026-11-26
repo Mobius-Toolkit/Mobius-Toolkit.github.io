@@ -1,8 +1,8 @@
 <section class="not-content">
   <h2>Evergreen Workstreams</h2>
-  <p>An evergreen Workstream has no end. It stays open when it has no open task. Mobius has two kinds of evergreen Workstreams. Ask the Coordinator to create them.</p>
+  <p>An evergreen Workstream has no end. It stays open when it has no open task. Mobius has two special kinds of evergreen Workstreams. Ask the Coordinator to create them.</p>
   <div class="row">
-    <p><strong>Maintenance.</strong> The maintenance Workstream keeps the main branch of each repository green. It gets the CI breaks of <code>main</code>, the CI failures that more than one pull request shows, the local checks that time out, and the task issues of the Curator. One maintenance Workstream serves all repositories of the organization.</p>
+    <p><strong>Maintenance.</strong> The maintenance Workstream keeps the main branch of each repository green. It gets the CI breaks of <code>main</code>, the CI failures that more than one pull request shows, the local checks that time out, the setups <code>.mobius/init</code> that fail, and the task issues of the Curator. One maintenance Workstream serves all repositories of the organization.</p>
   </div>
   <div class="row">
     <p><strong>Skills.</strong> The Skills Workstream keeps the skills of the organization in the repository <code>&lt;organization&gt;/mobius-skills</code>. When an agent writes a script or a command that later sessions can use again, it proposes a skill. The Lead of the Skills Workstream turns the proposal into a task issue, and the change comes to you as a pull request. At the start of each session, Mobius copies the skills of the default branch into the skill folder of the Harness. Each agent also loads your own skills from the skill directory of its Harness.</p>
