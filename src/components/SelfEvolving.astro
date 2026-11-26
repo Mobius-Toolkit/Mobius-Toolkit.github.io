@@ -1,0 +1,50 @@
+<section class="not-content">
+  <h2>Mobius improves itself</h2>
+  <p>Mobius uses its own agents to repair and to extend itself. Each row shows one part of this work.</p>
+  <div class="row">
+    <p><strong>It repairs itself.</strong> When the CI run of a pull request fails, the Diagnoser reads the job logs and finds the cause. A fix round repairs the pull request. A failure that more than one pull request shows becomes a repair issue of the maintenance Workstream. A break of <code>main</code> becomes a repair issue too. The global switch Repairs starts these tasks.</p>
+  </div>
+  <div class="row">
+    <p><strong>It writes its own skills.</strong> The Curator reads the sessions of the agents and keeps the memory files of each repository. It proposes a skill from the commands that agents repeat. The Skills Workstream turns each proposal into a pull request. Each new session gets the skills.</p>
+  </div>
+  <div class="row">
+    <p><strong>Mobius builds Mobius.</strong> Agents of Mobius write the code of Mobius. Most of the merged pull requests in the numbers above are pull requests of Mobius itself.</p>
+  </div>
+</section>
+
+<style>
+  section {
+    padding-block: 4rem 2rem;
+    color: var(--sl-color-text);
+  }
+  h2 {
+    margin: 0 0 2rem;
+    font-size: 1.625rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    color: var(--sl-color-white);
+  }
+  p {
+    max-width: 65ch;
+    margin: 0 0 1.5rem;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  .row {
+    padding-block: 2rem;
+    border-top: 1px solid var(--sl-color-hairline);
+  }
+  .row p {
+    margin: 0;
+  }
+  strong {
+    font-weight: 600;
+    color: var(--sl-color-white);
+  }
+  code {
+    font-family: 'Geist Mono Variable', monospace;
+    font-size: 0.9375em;
+    overflow-wrap: anywhere;
+  }
+</style>
